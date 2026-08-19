@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Katalog produk KiosPulsa — pulsa, paket data, e-wallet dengan harga diskon.">
+  <title>Layanan — KiosPulsa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="layanan">
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <div class="app-wrapper">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="logo-icon">K</div>
+        <div class="brand-text">Kios<span>Pulsa</span></div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-title">Menu</div>
+          <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Beranda</a>
+          <a href="layanan.html" class="nav-link active"><i class="fas fa-th-large"></i> Layanan</a>
+          <a href="deposit.html" class="nav-link"><i class="fas fa-wallet"></i> Deposit</a>
+          <a href="account.html" class="nav-link"><i class="fas fa-user"></i> Akun Saya</a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Bantuan</div>
+          <a href="faq.html" class="nav-link"><i class="fas fa-question-circle"></i> FAQ</a>
+          <a href="support.html" class="nav-link"><i class="fas fa-headset"></i> Support</a>
+        </div>
+      </nav>
+      <div class="sidebar-footer">
+        <button class="theme-toggle" id="themeToggle">
+          <span id="themeLabel">Mode Gelap</span>
+          <i class="fas fa-moon" id="themeIcon"></i>
+        </button>
+      </div>
+    </aside>
+
+    <div class="main-content">
+      <header class="top-header">
+        <div class="header-left">
+          <button class="menu-toggle" id="menuToggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
+          <div class="header-search">
+            <i class="fas fa-search"></i>
+            <input type="text" id="headerSearchInput" placeholder="Cari produk..." onfocus="document.getElementById('productSearch').focus()">
+          </div>
+        </div>
+        <div class="header-right">
+          <div class="balance-chip hidden" id="balanceChip">
+            <i class="fas fa-wallet"></i>
+            <span class="bal-label">Saldo</span>
+            <span class="bal-amount">Rp0</span>
+          </div>
+          <button class="user-btn hidden" id="userBtn">
+            <span class="avatar">U</span>
+            <span class="uname">User</span>
+          </button>
+          <button class="btn btn-primary btn-sm" id="loginBtnHeader" data-auth="login">
+            <i class="fas fa-sign-in-alt"></i> Masuk
+          </button>
+        </div>
+      </header>
+
+      <main class="page-content">
+        <div class="section-header">
+          <div>
+            <h1 class="section-title">Katalog Layanan</h1>
+            <p class="section-subtitle">Pilih kategori, operator, lalu order langsung</p>
+          </div>
+        </div>
+
+        <!-- Category filters -->
+        <div class="filter-bar" id="categoryFilters">
+          <!-- filled by JS -->
+        </div>
+
+        <!-- Operator filters -->
+        <div class="operator-tabs" id="operatorFilters">
+          <!-- filled by JS -->
+        </div>
+
+        <!-- Search -->
+        <div class="filter-bar">
+          <div class="search-input-wrap">
+            <i class="fas fa-search"></i>
+            <input type="text" id="productSearch" placeholder="Cari nominal atau nama produk...">
+          </div>
+        </div>
+
+        <!-- Products -->
+        <div class="product-grid" id="productGrid">
+          <!-- filled by JS -->
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Auth Modal -->
+  <div class="modal-overlay" id="authModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Akun KiosPulsa</h3>
+        <button class="modal-close" data-close-modal="authModal"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="auth-tabs">
+          <div class="auth-tab active" data-tab="login">Masuk</div>
+          <div class="auth-tab" data-tab="register">Daftar</div>
+        </div>
+        <div id="authLogin" class="auth-panel">
+          <form id="loginForm">
+            <div class="form-group">
+              <label class="form-label">Nomor HP</label>
+              <input type="tel" class="form-control" id="loginPhone" placeholder="08xxxxxxxxxx" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Password</label>
+              <input type="password" class="form-control" id="loginPass" placeholder="Minimal 6 karakter" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Masuk</button>
+          </form>
+        </div>
+        <div id="authRegister" class="auth-panel hidden">
+          <form id="registerForm">
+            <div class="form-group">
+              <label class="form-label">Nama Lengkap</label>
+              <input type="text" class="form-control" id="regName" placeholder="Nama kamu" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Nomor HP</label>
+              <input type="tel" class="form-control" id="regPhone" placeholder="08xxxxxxxxxx" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Password</label>
+              <input type="password" class="form-control" id="regPass" placeholder="Minimal 6 karakter" required>
+            </div>
+            <p class="form-hint mb-2"><i class="fas fa-gift"></i> Bonus saldo Rp5.000 langsung setelah daftar</p>
+            <button type="submit" class="btn btn-primary btn-block">Daftar Sekarang</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkout Modal -->
+  <div class="modal-overlay" id="checkoutModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Konfirmasi Order</h3>
+        <button class="modal-close" data-close-modal="checkoutModal"><i class="fas fa-times"></i></button>
+      </div>
+      <form id="checkoutForm" onsubmit="APP.confirmCheckout(event)">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Produk</label>
+            <div class="font-bold" id="coProductName">—</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Harga</label>
+            <div>
+              <span class="price-old text-sm" id="coNormal" style="text-decoration:line-through;color:var(--text-muted)"></span>
+              <span class="font-bold text-accent" id="coPrice" style="font-size:1.2rem;margin-left:0.5rem"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Saldo kamu</label>
+            <div class="font-bold" id="coBalance">—</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" id="coTargetLabel">Nomor HP Tujuan</label>
+            <input type="tel" class="form-control" id="coTarget" placeholder="08xxxxxxxxxx" required>
+            <p class="form-hint">Pastikan nomor tujuan benar. Salah input bukan tanggung jawab kami.</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" data-close-modal="checkoutModal">Batal</button>
+          <button type="submit" class="btn btn-primary">Konfirmasi & Bayar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+  <script src="js/app.js"></script>
+</body>
+</html>

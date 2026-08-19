@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Deposit saldo KiosPulsa via QRIS — cepat, aman, minimal Rp10.000.">
+  <title>Deposit — KiosPulsa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="deposit">
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <div class="app-wrapper">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="logo-icon">K</div>
+        <div class="brand-text">Kios<span>Pulsa</span></div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-title">Menu</div>
+          <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Beranda</a>
+          <a href="layanan.html" class="nav-link"><i class="fas fa-th-large"></i> Layanan</a>
+          <a href="deposit.html" class="nav-link active"><i class="fas fa-wallet"></i> Deposit</a>
+          <a href="account.html" class="nav-link"><i class="fas fa-user"></i> Akun Saya</a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Bantuan</div>
+          <a href="faq.html" class="nav-link"><i class="fas fa-question-circle"></i> FAQ</a>
+          <a href="support.html" class="nav-link"><i class="fas fa-headset"></i> Support</a>
+        </div>
+      </nav>
+      <div class="sidebar-footer">
+        <button class="theme-toggle" id="themeToggle">
+          <span id="themeLabel">Mode Gelap</span>
+          <i class="fas fa-moon" id="themeIcon"></i>
+        </button>
+      </div>
+    </aside>
+
+    <div class="main-content">
+      <header class="top-header">
+        <div class="header-left">
+          <button class="menu-toggle" id="menuToggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
+        </div>
+        <div class="header-right">
+          <div class="balance-chip hidden" id="balanceChip">
+            <i class="fas fa-wallet"></i>
+            <span class="bal-label">Saldo</span>
+            <span class="bal-amount">Rp0</span>
+          </div>
+          <button class="user-btn hidden" id="userBtn">
+            <span class="avatar">U</span>
+            <span class="uname">User</span>
+          </button>
+          <button class="btn btn-primary btn-sm" id="loginBtnHeader" data-auth="login">
+            <i class="fas fa-sign-in-alt"></i> Masuk
+          </button>
+        </div>
+      </header>
+
+      <main class="page-content">
+        <div class="section-header">
+          <div>
+            <h1 class="section-title">Deposit Saldo</h1>
+            <p class="section-subtitle">Isi saldo untuk mulai order. Minimal Rp10.000</p>
+          </div>
+        </div>
+
+        <div class="card mb-2">
+          <div class="card-body">
+            <div class="flex items-center gap-2" style="justify-content:space-between;flex-wrap:wrap">
+              <div>
+                <div class="text-sm text-muted">Saldo saat ini</div>
+                <div class="font-bold" style="font-size:1.5rem" id="pageBalance">Rp0</div>
+              </div>
+              <div class="trust-item"><i class="fas fa-shield-alt"></i> Pembayaran aman via QRIS</div>
+            </div>
+          </div>
+        </div>
+
+        <form id="depositForm">
+          <!-- Methods -->
+          <div class="section">
+            <h3 class="card-title mb-1">Metode Pembayaran</h3>
+            <div class="deposit-methods">
+              <div class="method-card active" data-method="qris">
+                <div class="method-icon"><i class="fas fa-qrcode"></i></div>
+                <div class="method-name">QRIS</div>
+                <div class="text-sm text-muted">Semua e-wallet & bank</div>
+              </div>
+              <div class="method-card disabled" data-method="va">
+                <span class="soon-badge">Segera</span>
+                <div class="method-icon"><i class="fas fa-university"></i></div>
+                <div class="method-name">Virtual Account</div>
+                <div class="text-sm text-muted">BCA, Mandiri, BNI</div>
+              </div>
+              <div class="method-card disabled" data-method="ewallet">
+                <span class="soon-badge">Segera</span>
+                <div class="method-icon"><i class="fas fa-mobile-alt"></i></div>
+                <div class="method-name">E-Wallet Langsung</div>
+                <div class="text-sm text-muted">Dana, OVO, GoPay</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Amount -->
+          <div class="section">
+            <h3 class="card-title mb-1">Pilih Nominal</h3>
+            <div class="nominal-grid mb-2">
+              <button type="button" class="nominal-btn deposit-amount-btn" data-amount="10000">
+                <div class="n-value">10rb</div>
+                <div class="n-price">Rp10.000</div>
+              </button>
+              <button type="button" class="nominal-btn deposit-amount-btn" data-amount="20000">
+                <div class="n-value">20rb</div>
+                <div class="n-price">Rp20.000</div>
+              </button>
+              <button type="button" class="nominal-btn deposit-amount-btn" data-amount="50000">
+                <div class="n-value">50rb</div>
+                <div class="n-price">Rp50.000</div>
+              </button>
+              <button type="button" class="nominal-btn deposit-amount-btn" data-amount="100000">
+                <div class="n-value">100rb</div>
+                <div class="n-price">Rp100.000</div>
+              </button>
+              <button type="button" class="nominal-btn deposit-amount-btn" data-amount="200000">
+                <div class="n-value">200rb</div>
+                <div class="n-price">Rp200.000</div>
+              </button>
+              <button type="button" class="nominal-btn deposit-amount-btn" data-amount="500000">
+                <div class="n-value">500rb</div>
+                <div class="n-price">Rp500.000</div>
+              </button>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Atau masukkan nominal custom</label>
+              <input type="number" class="form-control" id="customDeposit" placeholder="Minimal 10000" min="10000" step="1000">
+              <p class="form-hint">Minimal deposit Rp10.000</p>
+            </div>
+          </div>
+
+          <!-- Preview QRIS -->
+          <div class="qris-box hidden" id="depositPreview">
+            <img src="https://cdn.aceimg.com/dC0RPsZx1.jpg" alt="QRIS" class="qris-img" style="width:200px;height:200px;object-fit:contain;display:block;margin:0 auto 1rem;border-radius:8px;background:#fff;">
+            <div class="qris-amount" id="previewAmount">Rp0</div>
+            <p class="text-sm text-muted">Scan QRIS di atas dengan aplikasi e-wallet atau mobile banking kamu</p>
+            <p class="text-sm text-muted mt-1">Setelah bayar, saldo akan otomatis masuk</p>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg btn-block mt-2">
+            <i class="fas fa-check-circle"></i> Konfirmasi Deposit
+          </button>
+        </form>
+      </main>
+    </div>
+  </div>
+
+  <!-- Auth Modal -->
+  <div class="modal-overlay" id="authModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Akun KiosPulsa</h3>
+        <button class="modal-close" data-close-modal="authModal"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="auth-tabs">
+          <div class="auth-tab active" data-tab="login">Masuk</div>
+          <div class="auth-tab" data-tab="register">Daftar</div>
+        </div>
+        <div id="authLogin" class="auth-panel">
+          <form id="loginForm">
+            <div class="form-group">
+              <label class="form-label">Nomor HP</label>
+              <input type="tel" class="form-control" id="loginPhone" placeholder="08xxxxxxxxxx" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Password</label>
+              <input type="password" class="form-control" id="loginPass" placeholder="Minimal 6 karakter" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Masuk</button>
+          </form>
+        </div>
+        <div id="authRegister" class="auth-panel hidden">
+          <form id="registerForm">
+            <div class="form-group">
+              <label class="form-label">Nama Lengkap</label>
+              <input type="text" class="form-control" id="regName" placeholder="Nama kamu" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Nomor HP</label>
+              <input type="tel" class="form-control" id="regPhone" placeholder="08xxxxxxxxxx" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Password</label>
+              <input type="password" class="form-control" id="regPass" placeholder="Minimal 6 karakter" required>
+            </div>
+            <p class="form-hint mb-2"><i class="fas fa-gift"></i> Bonus saldo Rp5.000 langsung setelah daftar</p>
+            <button type="submit" class="btn btn-primary btn-block">Daftar Sekarang</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+  <script src="js/app.js"></script>
+  <script>
+    // Update page balance on load
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        if (APP.currentUser) {
+          const el = document.getElementById('pageBalance');
+          if (el) el.textContent = APP.formatRp(APP.currentUser.balance);
+        }
+      }, 100);
+    });
+  </script>
+</body>
+</html>
