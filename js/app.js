@@ -18,7 +18,7 @@ const APP = {
     minDeposit: 10000,
     processDelayMin: 800,
     processDelayMax: 2500,
-    depositConfirmDelay: 15
+    depositConfirmDelay: 25
   },
 
   products: {
